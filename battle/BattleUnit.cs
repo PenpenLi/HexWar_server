@@ -16,49 +16,25 @@ public class BattleUnit
 
         battle = new Battle();
 
+        battle.ServerSetCallBack(SendData);
+
         battle.ServerStart(_mapID, _mCards, _oCards);
-
-        RefreshData();
+    }
+    
+    public void ReceiveData(PlayerUnit _playerUnit,byte[] _bytes)
+    {
+        battle.ServerGetPackage(_bytes, _playerUnit == mPlayer);
     }
 
-    private void RefreshData()
+    private void SendData(bool _isMine,MemoryStream _ms)
     {
-        using (MemoryStream ms = new MemoryStream())
+        if (_isMine)
         {
-            using (BinaryWriter bw = new BinaryWriter(ms))
-            {
-                battle.ServerRefreshData(bw, true);
-
-                mPlayer.SendData(ms);
-            }
+            mPlayer.SendData(_ms);
         }
-
-        using (MemoryStream ms = new MemoryStream())
+        else
         {
-            using (BinaryWriter bw = new BinaryWriter(ms))
-            {
-                battle.ServerRefreshData(bw, false);
-
-                oPlayer.SendData(ms);
-            }
-        }
-    }
-
-    public void DoAction(PlayerUnit _playerUnit,byte[] _bytes)
-    {
-        bool result;
-
-        using (MemoryStream ms = new MemoryStream(_bytes))
-        {
-            using (BinaryReader br = new BinaryReader(ms))
-            {
-                result = battle.DoAction(mPlayer == _playerUnit, br);
-            }
-        }
-
-        if (result)
-        {
-            RefreshData();
+            oPlayer.SendData(_ms);
         }
     }
 }

@@ -44,9 +44,9 @@ public class BattleManager
         }
     }
 
-    public void PlayerDoAction(PlayerUnit _playerUnit,byte[] _bytes)
+    public void ReceiveData(PlayerUnit _playerUnit,byte[] _bytes)
     {
-        battleListWithPlayer[_playerUnit].DoAction(_playerUnit, _bytes);
+        battleListWithPlayer[_playerUnit].ReceiveData(_playerUnit, _bytes);
     }
 }
 

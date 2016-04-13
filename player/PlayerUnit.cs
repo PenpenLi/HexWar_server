@@ -14,7 +14,7 @@ public class PlayerUnit : IUnit
 
     public void ReceiveData(byte[] _bytes)
     {
-        BattleManager.Instance.PlayerDoAction(this, _bytes);
+        BattleManager.Instance.ReceiveData(this, _bytes);
     }
 
     public void SendData(MemoryStream _ms)

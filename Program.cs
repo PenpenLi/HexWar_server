@@ -9,8 +9,15 @@ namespace HexWar_server
 {
     class Program
     {
+        private static void WriteLog(string _str)
+        {
+            Console.WriteLine(_str);
+        }
+
         static void Main(string[] args)
         {
+            Log.Init(WriteLog);
+
             ConfigDictionary.Instance.LoadLocalConfig("local.xml");
 
             StaticData.path = ConfigDictionary.Instance.table_path;
