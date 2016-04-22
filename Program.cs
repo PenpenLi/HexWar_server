@@ -41,6 +41,8 @@ namespace HexWar_server
 
             Battle.Init(newDic,Map.mapDataDic);
 
+            Battle2.Init(newDic, Map.mapDataDic);
+
             Server<PlayerUnit> server = new Server<PlayerUnit>();
 
             server.Start("0.0.0.0", 1983, 100);

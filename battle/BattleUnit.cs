@@ -7,14 +7,14 @@ public class BattleUnit
     private PlayerUnit mPlayer;
     private PlayerUnit oPlayer;
 
-    private Battle battle;
+    private Battle2 battle;
 
     public void Init(PlayerUnit _mPlayer,PlayerUnit _oPlayer,List<int> _mCards,List<int> _oCards,int _mapID)
     {
         mPlayer = _mPlayer;
         oPlayer = _oPlayer;
 
-        battle = new Battle();
+        battle = new Battle2();
 
         battle.ServerSetCallBack(SendData);
 
