@@ -17,13 +17,15 @@ public class BattleManager
         }
     }
 
+    private const bool isVsAi = true;
+
     private Dictionary<PlayerUnit, BattleUnit> battleListWithPlayer = new Dictionary<PlayerUnit, BattleUnit>();
 
     private PlayerUnit lastPlayer = null;
     
     public void PlayerEnter(PlayerUnit _playerUnit)
     {
-        if(lastPlayer == null)
+        if(lastPlayer == null && !isVsAi)
         {
             lastPlayer = _playerUnit;
         }
@@ -35,12 +37,16 @@ public class BattleManager
 
             List<int> oCards = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
 
-            unit.Init(lastPlayer, _playerUnit, mCards, oCards, 1);
+            unit.Init(_playerUnit, lastPlayer, mCards, oCards, 1, isVsAi);
 
-            battleListWithPlayer.Add(lastPlayer, unit);
             battleListWithPlayer.Add(_playerUnit, unit);
 
-            lastPlayer = null;
+            if(lastPlayer != null)
+            {
+                battleListWithPlayer.Add(lastPlayer, unit);
+
+                lastPlayer = null;
+            }
         }
     }
 

@@ -9,7 +9,7 @@ public class BattleUnit
 
     private Battle2 battle;
 
-    public void Init(PlayerUnit _mPlayer,PlayerUnit _oPlayer,List<int> _mCards,List<int> _oCards,int _mapID)
+    public void Init(PlayerUnit _mPlayer,PlayerUnit _oPlayer,List<int> _mCards,List<int> _oCards,int _mapID,bool _isVsAi)
     {
         mPlayer = _mPlayer;
         oPlayer = _oPlayer;
@@ -18,7 +18,7 @@ public class BattleUnit
 
         battle.ServerSetCallBack(SendData);
 
-        battle.ServerStart(_mapID, _mCards, _oCards);
+        battle.ServerStart(_mapID, _mCards, _oCards, _isVsAi);
     }
     
     public void ReceiveData(PlayerUnit _playerUnit,byte[] _bytes)
