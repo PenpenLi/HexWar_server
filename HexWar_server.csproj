@@ -74,6 +74,7 @@
     <Compile Include="csv\sds\HeroSDS.cs" />
     <Compile Include="csv\sds\HeroTypeSDS.cs" />
     <Compile Include="csv\sds\MapSDS.cs" />
+    <Compile Include="csv\sds\SkillSDS.cs" />
     <Compile Include="csv\StaticData.cs" />
     <Compile Include="map\Map.cs" />
     <Compile Include="player\IUnit.cs" />

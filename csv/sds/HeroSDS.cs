@@ -6,8 +6,9 @@
     public int power;
     public int cost;
     public int heroType;
+    public int[] skills;
 
-    private HeroTypeSDS heroTypeSDS;
+    public HeroTypeSDS heroTypeSDS;
 
     public override void Fix()
     {
@@ -41,6 +42,10 @@
     public IHeroTypeSDS GetHeroTypeSDS()
     {
         return heroTypeSDS;
+    }
+    public int[] GetSkills()
+    {
+        return skills;
     }
 }
 
