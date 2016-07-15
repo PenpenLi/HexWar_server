@@ -17,7 +17,7 @@ public class BattleManager
         }
     }
 
-    private const bool isVsAi = true;
+    private const bool isVsAi = false;
 
     private Dictionary<PlayerUnit, BattleUnit> battleListWithPlayer = new Dictionary<PlayerUnit, BattleUnit>();
 
