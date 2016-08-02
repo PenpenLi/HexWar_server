@@ -71,11 +71,15 @@ public class ServerUnit
 
     public void SendData(MemoryStream _ms)
     {
-        byte[] head = BitConverter.GetBytes((ushort)_ms.Length);
+        int length = HEAD_LENGTH + (int)_ms.Length;
 
-        socket.BeginSend(head, 0, HEAD_LENGTH, SocketFlags.None, SendCallBack, null);
-        
-        socket.BeginSend(_ms.GetBuffer(), 0, (int)_ms.Length, SocketFlags.None, SendCallBack, null);
+        byte[] bytes = new byte[length];
+
+        Array.Copy(BitConverter.GetBytes((ushort)_ms.Length), bytes, HEAD_LENGTH);
+
+        Array.Copy(_ms.GetBuffer(), 0, bytes, HEAD_LENGTH, _ms.Length);
+
+        socket.BeginSend(bytes, 0, length, SocketFlags.None, SendCallBack, null);
     }
     
     private void SendCallBack(IAsyncResult result)
